@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AudioManager : SingletonBase<AudioManager>
@@ -10,6 +8,23 @@ public class AudioManager : SingletonBase<AudioManager>
 
     public AudioSource bgmSource;
     public AudioSource sfxSource;
+
+    private readonly string BGM_Volume = "bgmvolume";
+    private readonly string SFX_Volume = "sfxvolume";
+
+    private new void Awake()
+    {
+        base.Awake();
+
+        if(PlayerPrefs.HasKey(BGM_Volume))
+        {
+            UpdateBGMVolume(PlayerPrefs.GetFloat(BGM_Volume));
+        }
+        if (PlayerPrefs.HasKey(SFX_Volume))
+        {
+            UpdateSFXVolume(PlayerPrefs.GetFloat(SFX_Volume));
+        }
+    }
 
     private void Start()
     {
@@ -95,11 +110,13 @@ public class AudioManager : SingletonBase<AudioManager>
     public void UpdateBGMVolume(float value)
     {
         bgmSource.volume = value;
+        PlayerPrefs.SetFloat(BGM_Volume, bgmSource.volume);
     }
 
     public void UpdateSFXVolume(float value)
     {
         sfxSource.volume = value;
+        PlayerPrefs.SetFloat(SFX_Volume, sfxSource.volume);
     }
 }
 

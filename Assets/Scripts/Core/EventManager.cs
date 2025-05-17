@@ -37,6 +37,8 @@ public class EventManager : SingletonBase<EventManager>
     public event Action<float> OnBGMAudioLevelChanged;
     public event Action<float> OnSFXAudioLevelChanged;
 
+    public event Action<string, string> OnGameOverUIUpdate;
+
     // ==========================
     // == Invoke Methods Below ==
     // ==========================
@@ -73,4 +75,6 @@ public class EventManager : SingletonBase<EventManager>
 
     public void TriggerOnBGMAudioLevelChanged(float volume) => OnBGMAudioLevelChanged?.Invoke(volume);
     public void TriggerOnSFXAudioLevelChanged(float volume) => OnSFXAudioLevelChanged?.Invoke(volume);
+
+    public void TriggerOnGameOverUIUpdate(string score, string highScore) => OnGameOverUIUpdate?.Invoke(score, highScore);
 }

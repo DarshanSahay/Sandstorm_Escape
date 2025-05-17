@@ -28,7 +28,6 @@ public class PlayerLocomotion : MonoBehaviour
 
     void Start()
     {
-        startPosition = this.transform;
         rb = GetComponent<Rigidbody2D>(); // Get the Rigidbody2D component
         animator = GetComponent<Animator>(); // Get the Animator component
         animator.speed = 1f;
@@ -98,7 +97,6 @@ public class PlayerLocomotion : MonoBehaviour
     {
         Vector3 newPos = startPosition.position;
         transform.position = newPos;
-
         animator.speed = 1f;
     }
 

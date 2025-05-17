@@ -27,6 +27,7 @@ public class PlayerStats : MonoBehaviour
         EventManager.Instance.OnPlayerDied += ResetStats;
         EventManager.Instance.OnGameRestart += ResetStats;
         EventManager.Instance.OnPowerupPicked += UpdatePowerUpStatus;
+        //EventManager.Instance.OnGameOver += SetGameOverScoreTexts;
     }
 
     public void AddCoins(int amount)
@@ -99,7 +100,7 @@ public class PlayerStats : MonoBehaviour
         isShieldActive = false;
         scoreBoosterMultiplier = 1f;
         EventManager.Instance.TriggerOnCoinScoreChanged(CoinScore.ToString());
-        EventManager.Instance.TriggerDistanceUpdated(DistanceScore);
+        //EventManager.Instance.TriggerDistanceUpdated(DistanceScore);
         StopAllCoroutines();
     }
 }

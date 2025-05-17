@@ -12,8 +12,8 @@ public class ObjectPooler : SingletonBase<ObjectPooler>
     }
 
     public List<Pool> pools;
-    private Dictionary<GameObject, Queue<GameObject>> prefabPools = new Dictionary<GameObject, Queue<GameObject>>();
-    private Dictionary<GameObject, List<GameObject>> activeObjects = new Dictionary<GameObject, List<GameObject>>();
+    private Dictionary<GameObject, Queue<GameObject>> prefabPools = new();
+    private Dictionary<GameObject, List<GameObject>> activeObjects = new();
 
     private new void Awake()
     {

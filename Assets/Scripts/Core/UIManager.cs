@@ -38,6 +38,9 @@ public class UIManager : SingletonBase<UIManager>
     [SerializeField] private Button quitBtn_PauseMenu;
     [SerializeField] private Button quitBtn_GameOverMenu;
 
+    [SerializeField] private TMP_Text gameOverCurrentScoreText;
+    [SerializeField] private TMP_Text gameOverHighScoreText;
+
     private Coroutine healthDesignCoroutine;
 
     private void Start()
@@ -46,7 +49,8 @@ public class UIManager : SingletonBase<UIManager>
         EventManager.Instance.OnDistanceUpdated += UpdateDistanceScore;
         EventManager.Instance.OnLifeUpdated += UpdateLivesUI;
         EventManager.Instance.OnPlayerDied += OpenGameOverPanel;
-        EventManager.Instance.OnShieldCollected += UpdateHealthSliderDesign; 
+        EventManager.Instance.OnShieldCollected += UpdateHealthSliderDesign;
+        EventManager.Instance.OnGameOverUIUpdate += SetGameOverScoreTexts;
 
         startBtn.onClick.AddListener(StartButtonClicked);
         settingsBtn.onClick.AddListener(SettingsButtonClicked);
@@ -80,6 +84,12 @@ public class UIManager : SingletonBase<UIManager>
     private void UpdateLivesUI(int lives)
     {
         healthSlider.value = lives;
+    }
+
+    private void SetGameOverScoreTexts(string currentScore, string highScore)
+    {
+        gameOverCurrentScoreText.text = "Score : " + currentScore;
+        gameOverHighScoreText.text = "HighScore : " + highScore;
     }
 
     private void UpdateHealthSliderDesign(float duration)
